@@ -1,0 +1,27 @@
+<div id="post_content">
+	<h1 class="team-name">團隊名稱：<%= @team.name %></h1>
+	<% if @team.logo %>
+	<%= image_tag @team.logo.url(:medium) %>
+	<% end %>
+	<div class="body">
+		<p>團隊簡介：</p>
+		<p><%= @team.intro %></p>
+	</div>
+	<div class="body">
+		<p>團隊狀況：</p>
+		<p><%= @team.situation %></p> 
+	</p>
+	<div class="body">
+		<p>團隊簡介：</p>
+		<p><%= @team.needs %></p>	
+	</div>
+
+	<div id="comments">
+		<h2><%= @team.comments.count %> Comments</h2>
+		<%= render @team.comments %>
+
+		<h3>Add a comment:</h3>
+		<%@commentable = @team %>
+		<%= render "comments/form" %>
+	</div>
+</div>

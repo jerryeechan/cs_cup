@@ -1,0 +1,17 @@
+<div id="post_content">
+	<h1 class="title">才能表</h1>
+	<p class="date">
+		<% if current_user %>
+		| <%= link_to 'Edit', edit_post_path(@post) %> |
+		  <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+	  	<% end %>
+	</p>
+	<p class="body"><p>計畫內容：</p><%= @post.body %></p>
+
+	<div id="comments">
+		<%= render @talents %>
+
+		<h3>Add a comment:</h3>
+		<%= render "talents/form" %>
+	</div>
+</div>

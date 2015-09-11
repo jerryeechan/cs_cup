@@ -1,0 +1,9 @@
+<% @teams.each do |team| %>
+	<div class="post_wrapper">
+		<% if team.logo!=nil %>
+		<%= image_tag team.logo.url(:thumb) %>
+		<% end %>
+		<h2 class="title"><%= link_to team.name, team %></h2>
+		<p class="date"><%= team.created_at.strftime("%B %d, %Y") %></p>
+	</div>
+<% end %>

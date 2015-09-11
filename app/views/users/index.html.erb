@@ -1,0 +1,22 @@
+<%= form_tag 'users', :controller=>'users', :method => :get do %>
+  <p>
+    <%= text_field_tag :searchbar, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<% if @users.count==0 %>
+<p class="">no related found</p>
+<% end %>
+
+<% @users.each do |user| %>
+	<% if user!=current_user %>
+		<div class="post_wrapper">
+			<h2 class="title">
+				<%=link_to image_tag(user.image), user.link%>
+				<%= link_to user.name, user %>
+			</h2>
+			<p class="date"><%= user.created_at.strftime("%B %d, %Y") %></p>
+		</div>
+	<% end %>
+<% end %>

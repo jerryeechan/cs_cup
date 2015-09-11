@@ -1,0 +1,30 @@
+<%= form_for @team, :html => { :multipart => true } do |f| %>
+	<% if @team.errors.any? %>
+		<div id="errors">
+			<h2><%= pluralize(@team.errors.count, "error") %> prevented this post from saving:</h2>
+			<ul>
+				<% @team.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	
+
+	<%= f.label("團隊名稱") %><br>
+	<%= f.text_field :name,:value =>@team.name %><br>
+
+	<%= f.label ("團隊logo(可以不填)") %><br>
+	<%= f.file_field :logo %>
+	<br>
+	<%= f.label ("團隊簡介") %><br>
+	<%= f.text_area :intro %><br>
+	<br>
+	<%= f.label ("團隊現況") %><br>
+	<%= f.text_area :situation %><br>
+	<br>
+	<%= f.label ("團隊需求") %><br>
+	<%= f.text_area :needs %><br>
+	<br>
+	<%= f.submit :確認新增 %>
+<% end %>

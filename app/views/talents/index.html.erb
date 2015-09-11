@@ -1,0 +1,25 @@
+<% @talents.each do |talent| %>
+	<div class="post_wrapper">
+		<p><%= talent.name %></p> 
+	</div>
+<% end %>
+
+<% if @talent %>
+	<% if @talent.errors.any? %>
+		<div id="errors">
+			<h2><%= pluralize(@talent.errors.count, "error") %>重複囉</h2>
+			<ul>
+				<% @talent.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+<% end %>
+
+<%= form_for(Talent.new) do |f| %>
+	<%= f.label :新增talent %><br>
+	<%= f.text_field :name %><br>
+	<br>
+	<%= f.submit :確認新增 %>
+<% end %>
