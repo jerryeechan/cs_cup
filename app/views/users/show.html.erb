@@ -1,37 +1,62 @@
 <div id="post_content">
 	<%	if @user==current_user%>
 	<p>*點擊任何欄位都可以直接做修改</p>
-	<% end %>
-	<h1 class="title">
-		<%= link_to image_tag(@user.image) ,@user.link %>
-		<%	if @user==current_user%>
-		<%= best_in_place @user, :name %>
-		<% else%>
-		<%=	@user.name %>
-		<% end %>
-	</h1>
-	<p class="body">
-		email：
-		<%	if @user==current_user%>
-		<%=  best_in_place @user, :email %>
-		<%else%>
-		<%=  @user.email %>
-		<% end %>
-	</p>
-	<div class="team">
+		<h1 class="title">
+			
+			報名者：
+			<%= link_to image_tag(@user.image) ,@user.link %>
+			<%=  best_in_place @user, :name %>
+
+		</h1>
+		<hr>
+		<p class="body">
+			學校
+			<%= best_in_place @user, :school %>
+			</br>
+			
+			科系
+			<%= best_in_place @user, :department %>
+			</br>
+			
+			球類
+			<%= best_in_place @user, :sport, :as => :select, :collection => {"1" => "男籃", "2" => "女籃", "3" => "男排", "4" => "壘球"} %>
+			</br>
+	
+		</p>
 		
-	</div>
-	<p class="talent">
-	</p>
 
-	<% if false%>
-	<div id="comments">
-		<h2><%= @user.comments.count %> Comments</h2>
-		<%= render @people.comments %>
+		<div id="member_wrapper">
+		<hr>
+			目前隊員人數：<%= @user.members.count%></br>
+			<table>
+			<tr>
+				<th>證件照</th><th>姓名</th><th>身份證字號</th><th>生日</th><th>學號</th><th>手機</th><th>備註</th>
+			</tr>
+			<% @user.members.each do |member|%>
+			<tr>
+				<th>
+					<%= form_for member, html: { multipart: true } do |f| %>
+					    <%= image_tag(member.image.thumb) if member.image? %>
+					    <%= f.file_field :image %> 
+					    <%= f.submit "上傳" %>
+					<% end %>
+				</th>
+				<th><%= best_in_place member, :name %> </th>
+				<th> <%= best_in_place member, :person_id %></th>
+				<th> <%= best_in_place member, :birthday %></th>
+				<th> <%= best_in_place member, :school_id %></th>
+				<th> <%= best_in_place member, :cellphone %></th>
+				<th> <%= best_in_place member, :etc %></th>
+			</tr>
+			<% end %>
+			
+			 </table>
+		<hr>
+			<h3>新增隊員</h3>
 
-		<h3>Add a comment:</h3>
-		<%= render "comments/form" %>
-	</div>
+			<%= render "members/form", :user=>@user %>
+		</div>
 	<% end %>
+
 
 </div>

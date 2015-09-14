@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   			@users = search
   		end
 	end
-
 	def show
 		@user = User.find(params[:id])
 	end
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
   			@users = User.search(params[:searchbar])
   	end
   	def user_params
-		params.require(:user).permit(:uid, :name)
+		params.require(:user).permit(:name, :school, :sport, :department)
 	end
 
 

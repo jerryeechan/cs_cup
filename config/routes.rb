@@ -10,19 +10,14 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    member do
-        get 'send_email'
-    end
+    resources :members
   end
+  resources :members
 
-  resources :talents do
-  end
+  
 
-  resources :teams do
-    resources :comments
-  end
 
-  get 'auth/facebook', as: "auth_provider"
+  get 'auth/facebook', as: "user_login"
   get 'auth/facebook/callback', to: 'sessions#create'#'users#login'
   #get 'auth/:provider/callback', to: 'sessions#create'
   #get 'auth/failure', to: redirect('/')

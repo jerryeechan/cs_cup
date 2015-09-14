@@ -24,11 +24,14 @@
 			<%puts current_user %>
 			<% if current_user%>
 			<li><%= link_to "更改隊伍資料",user_path(current_user) %></li>
+			<% else%>
+			<li><%= link_to "報名",user_login_path %></li>
 			<% end %>
-			<li><%= link_to "報名規則", teams_path %></li>
+
+			<li><%= link_to "報名規則", root_path %></li>
 			<li><%= link_to "章程賽制", root_path %></li>
 			<li><%= link_to "公告", users_path %></li>
-			<li><%= link_to "賽程", talents_path %></li>
+			<li><%= link_to "賽程", root_path %></li>
 			<li><%= link_to "關於此計畫", about_path %></li>
 		</ul>
 		<div>
@@ -39,10 +42,8 @@
 		    <p class="sign_in">Signed in as <strong><%= current_user.name %></strong>!
 		    	<%= link_to "Sign out", signout_path, id: "sign_out" %>
 		    </p>
-		    
 		  <% else %>
-		    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-
+		    <%= link_to "Sign in with Facebook", "", id: "sign_in" %>
 		  <% end %>
 		</div>
 	
@@ -52,19 +53,9 @@
 			<% if current_page?(root_path)%>
 				<p>All Posts</p>
 				<div class="buttons">
-					<button class="button"><%= link_to "New Post", new_post_path %></button>
+					<button class="button"><%= link_to "登入", user_login_path %></button>
 				</div>
-			<% elsif current_page?(teams_path)%>
-				<p>Teams</p>
-				<div class="buttons">
-					<button class="button"><%= link_to "新增團隊", new_team_path %></button>
-				</div>
-			<% elsif params[:controller] == 'teams' && %w(new show).include?(params[:action])%>
-				<button class="button"><%= link_to "回到團隊", teams_path %></button>
-			<% else%>
-
-				<p>else</p>
-			<% end %>
+			<%end%>
 		</div>
 
 		<% flash.each do |name, msg| %>

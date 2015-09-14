@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911082040) do
+ActiveRecord::Schema.define(version: 20150914054030) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "name"
@@ -25,10 +25,20 @@ ActiveRecord::Schema.define(version: 20150911082040) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
 
-  create_table "people", force: :cascade do |t|
+  create_table "members", force: :cascade do |t|
+    t.string   "name"
+    t.string   "person_id"
+    t.string   "birthday"
+    t.string   "school_id"
+    t.string   "cellphone"
+    t.string   "etc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.string   "image"
   end
+
+  add_index "members", ["user_id"], name: "index_members_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -82,6 +92,9 @@ ActiveRecord::Schema.define(version: 20150911082040) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "provider"
+    t.string   "school"
+    t.string   "department"
+    t.string   "sport"
   end
 
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true

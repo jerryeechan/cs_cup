@@ -18,7 +18,8 @@ gem 'best_in_place', '~> 3.0.1'
 gem 'mail_form'
 gem 'imagemagick-identify', '~> 0.0.1'
 gem 'rmagick', '~>2.13.2'
-gem 'paperclip', "~>4.2"
+gem "carrierwave"
+
 group :development, :test do
 	gem 'sqlite3'
 end
