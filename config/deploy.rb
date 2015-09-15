@@ -27,7 +27,7 @@ set :repo_url, 'git@github.com:jerrypupu111/cs_cup.git'
 
 # Default value for linked_dirs is []
  set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
-
+set :tmp_dir, "home/uka/Public/tmp"  
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
