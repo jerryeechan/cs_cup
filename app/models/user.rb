@@ -42,17 +42,6 @@ class User < ActiveRecord::Base
     where(uid: auth.uid).first_or_initialize.tap do |user|
 
       user.email = auth.info.email
-      puts "--debug print out"
-      
-      puts user
-      puts public_attr
-      puts auth
-      puts "..."
-      puts auth.info
-      puts auth["info"]
-      puts user.email
-      puts auth.extra.raw_info.email
-      puts "debug print out"
       
       user.provider = auth.provider
       user.uid = auth.uid
