@@ -20,8 +20,9 @@ gem 'imagemagick-identify', '~> 0.0.1'
 gem 'rmagick', '~>2.13.2'
 gem "carrierwave"
 
-gem 'capistrano-rails', :group => :development
-gem 'capistrano-passenger', :group => :development
+gem 'capistrano-rails'
+gem 'capistrano-passenger'
+gem 'capistrano-rvm'
 
 group :development, :test do
 	gem 'sqlite3'

@@ -11,7 +11,9 @@
 
 # role-based syntax
 # ==================
-
+role :app, %w{140.114.197.41}
+role :web, %w{140.114.197.41}
+role :db,  %w{140.114.197.41}
 # Defines a role with one or multiple servers. The primary server in each
 # group is considered to be the first unless any  hosts have the primary
 # property set. Specify the username and a domain or IP for the server.
@@ -39,7 +41,7 @@ server '140.114.197.41', user: 'uka', roles: %w{web app}
 # limited set of options, consult the Net::SSH documentation.
 # http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start
 #
-set :ssh_options, { :forward_agent => true }
+#set :ssh_options, { :forward_agent => true }
 # Global options
 # --------------
 #  set :ssh_options, {
