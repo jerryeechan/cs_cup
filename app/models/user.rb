@@ -38,12 +38,16 @@ class User < ActiveRecord::Base
 
     facebook = Koala::Facebook::API.new(access_token)
     public_attr = facebook.get_object("me") 
-    
+  
     where(uid: auth.uid).first_or_initialize.tap do |user|
 
       user.email = auth.info.email
       puts "--debug print out"
-      puts 
+      
+      puts user
+      puts public_attr
+      puts auth
+      puts "..."
       puts auth.info
       puts auth["info"]
       puts user.email
