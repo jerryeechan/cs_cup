@@ -33,7 +33,7 @@ role :db,  %w{140.114.197.41}
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 set :stage, :production
-server '140.114.197.41', user: 'postgres', roles: %w{web app}
+server '140.114.197.41', roles: %w{web app}
 
 # Custom SSH Options
 # ==================
