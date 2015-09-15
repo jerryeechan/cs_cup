@@ -37,7 +37,7 @@ Rails.application.configure do
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
-
+  config.secret_key_base = '3be42f80b0171cbc684d53ff7db0238e0c4606b90da2ca838d6c4280c687d068049962679839472433a6b056f14a6ce2ee6dce165dd7bf99e66913bfd5eaa5c1'
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
