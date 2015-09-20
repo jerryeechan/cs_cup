@@ -33,8 +33,10 @@ role :db,  %w{140.114.197.41}
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 set :stage, :production
-server '140.114.197.41',user: 'uka', roles: %w{web app}
 
+
+server '140.114.197.41',user: 'uka', roles: %w{web app}
+set :ssh_options, { :forward_agent => true}
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
@@ -44,11 +46,11 @@ server '140.114.197.41',user: 'uka', roles: %w{web app}
 #set :ssh_options, { :forward_agent => true }
 # Global options
 # --------------
-#  set :ssh_options, {
-#    keys: %w(/home/rlisowski/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
+  #set :ssh_options, {
+ #   keys: %w(/Users/jerry/.ssh/id_rsa),
+ #   forward_agent: false,
+ #   auth_methods: %w(password)
+ # }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------

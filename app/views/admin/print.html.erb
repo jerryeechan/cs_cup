@@ -1,0 +1,36 @@
+<% if current_user != nil && current_user.uid == "1073719775978420" %>
+	<%= image_tag "title.png" , :id =>'title'  %>
+	<%= image_tag "title.png", :id =>'result'  %>
+	<%= javascript_tag do %>
+		var teams = new Array();
+	<% end %>	
+	<% @users.each do |user| %>
+		
+
+		<%= javascript_tag do %>
+			var teamData = new Object();
+			teams.push(teamData);
+			teamData.school = '<%= raw user.school %>'
+			teamData.sport = sportString[parseInt('<%= raw user.sport %>')];
+			teamData.department = '<%= raw user.department %>'
+			teamData.members = new Array();
+		<% end %>	
+		<% user.members.each do |member|%>
+
+
+			<%= javascript_tag do %>
+			var	memberData = new Object();
+			memberData.name = '<%= raw member.name %>';
+			memberData.image = '<%= raw member.image %>';
+			teamData.members.push(memberData);
+			<% end %>
+		<% end %>
+	<% end %>
+
+	<%= javascript_tag do %>
+		loadData(teams);
+	<% end %>	
+	<a href="#" download="test.png" onclick="this.href=printer.canvas.toDataURL();" >下載</a>
+<% else %>
+	It's an restricted page, plz ask administrator for authorization
+<% end %>
