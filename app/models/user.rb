@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #devise :database_authenticatable, :registerable,
   #       :recoverable, :rememberable, :trackable, :validatable
-  has_many :members,dependent: :destroy
 
  # def self.from_omniauth(auth)
  # 	puts auth;
@@ -28,9 +27,9 @@ class User < ActiveRecord::Base
 
 #name LIKE ? OR description LIKE ?
 
-#    has_and_belongs_to_many :talents ,:join_table =>'users_talents'
-#    has_many :posts
-#    has_and_belongs_to_many :teams ,:join_table =>'users_teams'
+    has_and_belongs_to_many :talents ,:join_table =>'users_talents'
+    has_many :posts
+    has_and_belongs_to_many :teams ,:join_table =>'users_teams'
     
     
    def self.from_omniauth(auth)
@@ -38,10 +37,17 @@ class User < ActiveRecord::Base
 
     facebook = Koala::Facebook::API.new(access_token)
     public_attr = facebook.get_object("me") 
-  
+    
     where(uid: auth.uid).first_or_initialize.tap do |user|
 
       user.email = auth.info.email
+      puts "--debug print out"
+      puts 
+      puts auth.info
+      puts auth["info"]
+      puts user.email
+      puts auth.extra.raw_info.email
+      puts "debug print out"
       
       user.provider = auth.provider
       user.uid = auth.uid
@@ -57,5 +63,6 @@ class User < ActiveRecord::Base
   	end
   end
 
+  has_many :members
 
 end

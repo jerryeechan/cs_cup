@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blog</title>
+  <title>2015中資盃@清華大學</title>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
@@ -20,7 +20,7 @@
 		</div>
 		<ul>
 		
-			<li class="category">Website</li>
+			<li class="category">2015中資盃</li>
 			<%puts current_user %>
 			<% if current_user%>
 			<li><%= link_to "更改隊伍資料",user_path(current_user) %></li>
@@ -28,15 +28,12 @@
 			<li><%= link_to "報名",user_login_path %></li>
 			<% end %>
 
-			<li><%= link_to "報名規則", root_path %></li>
-			<li><%= link_to "章程賽制", root_path %></li>
+			<li><%= link_to "報名規則", register_rule_path %></li>
+			<li><%= link_to "章程賽制", rules_path %></li>
 			<li><%= link_to "公告", users_path %></li>
 			<li><%= link_to "賽程", root_path %></li>
 			<li><%= link_to "關於此計畫", about_path %></li>
 		</ul>
-		<div>
-			<p class="memeber">總會員人數 <strong><%= User.count%></strong></p>
-		</div>
 		<div>
 		  <% if current_user %>
 		    <p class="sign_in">Signed in as <strong><%= current_user.name %></strong>!

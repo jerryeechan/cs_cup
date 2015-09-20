@@ -12,9 +12,21 @@ Rails.application.routes.draw do
   resources :users do
     resources :members
   end
+
   resources :members
 
+
+  get 'admin/print', to: 'admin#print'
   
+  get 'register/rule', to: 'register#rule'
+
+
+  get 'rules', to: 'rules#index'
+  get 'rules/basketball', to: 'rules#basketball'
+  get 'rules/badminton', to: 'rules#badminton'
+  get 'rules/softball', to: 'rules#softball'
+  get 'rules/volleyball', to: 'rules#volleyball'
+  get 'rules/overall', to: 'rules#overall'
 
 
   get 'auth/facebook', as: "user_login"

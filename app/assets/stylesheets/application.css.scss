@@ -262,8 +262,6 @@ p{
 		outline: none;
 		background: transparent;
 		border: 1px solid #d6dce0;
-		padding: .5em 1.5em;
-		font-size: 1.1em;
 		border-radius: 1.5em;
 		margin-left: .5em;
 		&:hover {
@@ -271,9 +269,29 @@ p{
 			color: #33acb7;
 		}
 	}
+	input[type="file"]{
+		
+	}
 }
 
+.paragraph-wrapper
+{
+	padding: 20px;
+}
 .best_in_place
 {
 	
 }
+
+td,
+th{
+	border: 1px solid #000;
+	border-spacing: 0;
+	width: 120px;
+}
+table {
+  border-collapse: collapse;
+  
+}
+
+
