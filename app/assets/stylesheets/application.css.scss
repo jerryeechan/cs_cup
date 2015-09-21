@@ -278,9 +278,15 @@ p{
 {
 	padding: 20px;
 }
+
 .best_in_place
 {
-	
+	&:hover{
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	color: #338;
 }
 
 #main-core{
