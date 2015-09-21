@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 	    @user = User.find(params[:id])
 	    respond_to do |format|
 		    if @user.update_attributes(user_params)
-		      format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+		      format.html { render(@user, :notice => 'User was successfully updated.') }
 		      format.json { respond_with_bip(@user) }
 		    else
 		      format.html { render :action => "edit" }
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   			@users = User.search(params[:searchbar])
   	end
   	def user_params
-		params.require(:user).permit(:name, :school, :sport, :department, :transfercode)
+		params.require(:user).permit(:email,:name, :school, :sport, :department, :transfercode)
 	end
 
 

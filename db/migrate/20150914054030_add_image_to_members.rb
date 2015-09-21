@@ -6,5 +6,6 @@ class AddImageToMembers < ActiveRecord::Migration
     add_column :members, :studentidcardback, :string
     add_column :members, :idcardfront, :string
     add_column :members, :idcardback, :string
+    
   end
 end

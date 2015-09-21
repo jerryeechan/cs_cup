@@ -1,5 +1,5 @@
 <div id="post_content">
-	<%	if @user==current_user%>
+	<%	if @user==current_user || is_authorized_user %>
 	<p>*點擊任何欄位都可以直接做修改</p>
 		<h1 class="title">
 			
@@ -12,6 +12,9 @@
 		<p>!!轉帳代碼!! 請填寫轉帳完成後收據上的代碼</p>
 		<%= best_in_place @user, :transfercode %>
 		<p class="body">
+			聯絡信箱
+			<%= best_in_place @user, :email %>
+			</br>
 			學校
 			<%= best_in_place @user, :school %>
 			</br>
@@ -21,7 +24,7 @@
 			</br>
 			
 			球類
-			<%= best_in_place @user, :sport, :as => :select, :collection => {"1" => "男籃", "2" => "女籃", "3" => "男排","4" => "女排", "5" => "壘球", "6" => "羽球", "7" => "桌球"} %>
+			<%= best_in_place @user, :sport, :as => :select, :collection => {"1" => "男籃", "2" => "女籃", "3" => "男排","4" => "女排", "5" => "壘球", "6" => "羽球", "7" => "桌球"}, :id => "balltype" %>
 			</br>
 	
 		</p>
@@ -99,10 +102,8 @@
 
 			 </table>
 		<hr>
-		<% limit = [0,18,18,18,18,25,15,16] %>
-		<% if limit[@user.sport.to_i] == 0 %>
-				<p>請先選擇球類項目</p>		
-		<% elsif  @user.members.length < limit[@user.sport.to_i] %>
+		<% limit = [15,18,18,18,18,25,15,16] %>
+		<% if  @user.members.length < limit[@user.sport.to_i] %>
 		<div>
 			<h3>新增隊員</h3>
 			<%= render "members/form", :user=>@user %>

@@ -17,6 +17,7 @@ class MembersController < ApplicationController
 
 		respond_to do |format|
 		    if @member.update_attributes(member_params)
+		    	puts member_params
 		      format.html { redirect_to(@user) }
 		      format.json { respond_with_bip(@member) }
 		    else

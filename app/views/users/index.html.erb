@@ -1,22 +1,28 @@
-<%= form_tag 'users', :controller=>'users', :method => :get do %>
-  <p>
-    <%= text_field_tag :searchbar, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
-
-<% if @users.count==0 %>
-<p class="">no related found</p>
-<% end %>
-
-<% @users.each do |user| %>
-	<% if user!=current_user %>
-		<div class="post_wrapper">
-			<h2 class="title">
-				<%=link_to image_tag(user.image), user.link%>
-				<%= link_to user.name, user %>
-			</h2>
-			<p class="date"><%= user.created_at.strftime("%B %d, %Y") %></p>
-		</div>
+<div id="main-core">
+<% if is_authorized_user %>
+	<%= form_tag 'users', :controller=>'users', :method => :get do %>
+	  <p>
+	    <%= text_field_tag :searchbar, params[:search] %>
+	    <%= submit_tag "Search", :name => nil %>
+	  </p>
 	<% end %>
+
+	<% if @users.count==0 %>
+	<p class="">no related found</p>
+	<% end %>
+
+	<% @users.each do |user| %>
+		
+			<div class="post_wrapper">
+				<% @users.each do |user|%>
+				<%= link_to user.school+" "+user.name , user_path(user) %>
+				<% end %>
+			</div>
+		
+	<% end %>
+
+<% else %>
+		<p> 你沒有權限造訪</p>
 <% end %>
+
+</div>
