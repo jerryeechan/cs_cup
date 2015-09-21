@@ -36,11 +36,11 @@
 		</ul>
 		<div>
 		  <% if current_user %>
-		    <p class="sign_in">Signed in as <strong><%= current_user.name %></strong>!
-		    	<%= link_to "Sign out", signout_path, id: "sign_out" %>
+		    <p class="sign_in"> <strong><%= current_user.name %></strong> 你好嗎？
+		    	<%= link_to "登出", signout_path, id: "sign_out" %>
 		    </p>
 		  <% else %>
-		    <%= link_to "Sign in with Facebook", "", id: "sign_in" %>
+		    <p class="sign_in"><%= link_to "以Facebook登入", user_login_path, id: "sign_in" %></p>
 		  <% end %>
 		</div>
 	
