@@ -34,6 +34,6 @@ class MembersController < ApplicationController
 		redirect_to @user
 	end
 	def member_params
-		params.require(:member).permit(:image,:name,:person_id,:birthday,:school_id,:cellphone,:etc)
+		params.require(:member).permit(:image,:studentidcardfront,:studentidcardback,:idcardback,:idcardfront,:name,:person_id,:birthday,:school_id,:cellphone,:etc)
 	end
 end

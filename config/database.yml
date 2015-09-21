@@ -31,11 +31,14 @@ default: &default
   pool: 5
 
 development:
-  <<: *default
-  database: cscup_development
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+  database: db/test.sqlite3
 
-  production:
+production:
   <<: *default
   database: cscup_production
-  username: postgres
+  username: pg
+  password: 8888
   

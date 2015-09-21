@@ -21,7 +21,7 @@
 			</br>
 			
 			球類
-			<%= best_in_place @user, :sport, :as => :select, :collection => {"1" => "男籃", "2" => "女籃", "3" => "男排", "4" => "壘球"} %>
+			<%= best_in_place @user, :sport, :as => :select, :collection => {"1" => "男籃", "2" => "女籃", "3" => "男排","4" => "女排", "5" => "壘球", "6" => "羽球", "7" => "桌球"} %>
 			</br>
 	
 		</p>
@@ -32,15 +32,43 @@
 			目前隊員人數：<%= @user.members.count%></br>
 			<table>
 			<tr>
-				<th>證件照</th><th>姓名</th><th>身份證字號</th><th>生日</th><th>學號</th><th>手機</th><th>備註</th>
+				<th>證件照</th><th>學生證正面</th><th>學生證背面</th><th>第二證件正面</th><th>第二證件背面</th><th>姓名</th><th>身份證字號</th><th>生日</th><th>學號</th><th>手機</th><th>備註</th>
 			</tr>
 			<% @user.members.each do |member|%>
 			<tr>
 				<th>
 					<%= form_for member, html: { multipart: true } do |f| %>
 					    <%= image_tag(member.image.thumb) if member.image? %>
-					    <%= f.file_field :image ,accept: 'image/png,image/gif,image/jpeg'%> 
-					    <%= f.submit "上傳" %>
+					    <%= f.file_field :image ,accept: 'image/png,image/gif,image/jpeg', :class => 'file-input-field' %> 
+					    <%= f.submit "上傳",:class => 'file-upload-button' %>
+					<% end %>
+				</th>
+				<th>
+					<%= form_for member, html: { multipart: true } do |f| %>
+					    <%= image_tag(member.studentidcardfront.thumb) if member.studentidcardfront? %>
+					    <%= f.file_field :studentidcardfront ,accept: 'image/png,image/gif,image/jpeg', :class => 'file-input-field'%> 
+					    <%= f.submit "上傳",:class => 'file-upload-button' %>
+					<% end %>
+				</th>
+				<th>
+					<%= form_for member, html: { multipart: true } do |f| %>
+					    <%= image_tag(member.studentidcardback.thumb) if member.studentidcardback? %>
+					    <%= f.file_field :studentidcardback ,accept: 'image/png,image/gif,image/jpeg',:class => 'file-input-field'%> 
+					    <%= f.submit "上傳",:class => 'file-upload-button' %>
+					<% end %>
+				</th>
+				<th>
+					<%= form_for member, html: { multipart: true } do |f| %>
+					    <%= image_tag(member.idcardfront.thumb) if member.idcardback? %>
+					    <%= f.file_field :idcardback ,accept: 'image/png,image/gif,image/jpeg',:class => 'file-input-field'%> 
+					    <%= f.submit "上傳" ,:class => 'file-upload-button'%>
+					<% end %>
+				</th>
+				<th>
+					<%= form_for member, html: { multipart: true } do |f| %>
+					    <%= image_tag(member.idcardback.thumb) if member.idcardback? %>
+					    <%= f.file_field :idcardback ,accept: 'image/png,image/gif,image/jpeg',:class => 'file-input-field'%> 
+					    <%= f.submit "上傳" ,:class => 'file-upload-button'%>
 					<% end %>
 				</th>
 				<th><%= best_in_place member, :name %> </th>
@@ -53,12 +81,35 @@
 			</tr>
 			<% end %>
 			
+			<%= javascript_tag do %>		
+			$('.file-upload-button').on('click', function (e) {
+				var index = $('.file-upload-button').index($(this))
+				console.log(index);
+    			var input_field = $('.file-input-field')[index];
+    			console.log(input_field);
+    			input_field.click();
+    			e.preventDefault();
+			});
+			
+			$('.file-input-field').change(function(e){
+				$(this).closest("form").submit();
+			});
+
+			<% end %>
+
 			 </table>
 		<hr>
+		<% limit = [0,18,18,18,18,25,15,16] %>
+		<% if limit[@user.sport.to_i] == 0 %>
+				<p>請先選擇球類項目</p>		
+		<% elsif  @user.members.length < limit[@user.sport.to_i] %>
+		<div>
 			<h3>新增隊員</h3>
-
 			<%= render "members/form", :user=>@user %>
 		</div>
+		<% else %>
+			<p>隊員人數已達上限</p>		
+		<% end %>
 	<% end %>
 
 

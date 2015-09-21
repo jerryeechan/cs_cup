@@ -60,6 +60,11 @@ class User < ActiveRecord::Base
       user.link= auth.extra.raw_info.link
       user.gender = auth.extra.raw_info.gender
       puts user
+      user.school = "請點擊填入學校"
+      user.department = "請點擊填入系所"
+      user.sport = "請點擊選擇球類項目"
+      user.transfercode = "請點擊填入轉帳代碼"
+
       user.save!
   	end
   end

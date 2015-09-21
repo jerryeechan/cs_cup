@@ -13,18 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150921085201) do
 
-  create_table "comments", force: :cascade do |t|
-    t.string   "name"
-    t.text     "body"
-    t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "commentable_type"
-    t.integer  "commentable_id"
-  end
-
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
-
   create_table "members", force: :cascade do |t|
     t.string   "name"
     t.string   "person_id"
@@ -32,10 +20,14 @@ ActiveRecord::Schema.define(version: 20150921085201) do
     t.string   "school_id"
     t.string   "cellphone"
     t.string   "etc"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "user_id"
     t.string   "image"
+    t.string   "studentidcardfront"
+    t.string   "studentidcardback"
+    t.string   "idcardfront"
+    t.string   "idcardback"
   end
 
   add_index "members", ["user_id"], name: "index_members_on_user_id"
@@ -45,39 +37,12 @@ ActiveRecord::Schema.define(version: 20150921085201) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
-
-  create_table "talents", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "talentType"
-    t.integer  "user_id"
-  end
-
-  add_index "talents", ["user_id"], name: "index_talents_on_user_id"
-
-  create_table "teams", force: :cascade do |t|
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "name"
-    t.text     "intro"
-    t.text     "situation"
-    t.text     "needs"
-    t.string   "email"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",               default: "", null: false
+    t.string   "email"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       default: 0,  null: false
+    t.integer  "sign_in_count",       default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -99,13 +64,5 @@ ActiveRecord::Schema.define(version: 20150921085201) do
   end
 
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true
-
-  create_table "users_talents", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "talent_id"
-  end
-
-  add_index "users_talents", ["talent_id"], name: "index_users_talents_on_talent_id"
-  add_index "users_talents", ["user_id"], name: "index_users_talents_on_user_id"
 
 end

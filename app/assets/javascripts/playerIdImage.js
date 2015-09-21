@@ -181,7 +181,7 @@ function loadData(teams)
 }
 
 
-var sportString = ["??","男籃","女籃"];
+var sportString = ["??","男籃","女籃", "男排", "女排", "壘球", "羽球" ,"桌球"];
 
 //$(document).ready(init);
 //$(window).bind('page:change', init);
