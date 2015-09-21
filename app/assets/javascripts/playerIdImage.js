@@ -186,4 +186,7 @@ var sportString = ["??","男籃","女籃"];
 //$(document).ready(init);
 //$(window).bind('page:change', init);
 
+$(window).bind('page:change', function(){
+  jQuery(".best_in_place").best_in_place();
+});
 

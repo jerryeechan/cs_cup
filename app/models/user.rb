@@ -40,9 +40,10 @@ class User < ActiveRecord::Base
     
     where(uid: auth.uid).first_or_initialize.tap do |user|
 
+
       user.email = auth.info.email
       puts "--debug print out"
-      puts 
+      puts auth 
       puts auth.info
       puts auth["info"]
       puts user.email
