@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914054030) do
+ActiveRecord::Schema.define(version: 20150921085201) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "name"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20150914054030) do
     t.string   "school"
     t.string   "department"
     t.string   "sport"
+    t.string   "transfercode"
   end
 
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true

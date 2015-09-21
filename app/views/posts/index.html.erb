@@ -1,4 +1,4 @@
-<% if current_user != nil && current_user.uid == "1073719775978420" %>
+<% if is_authorized_user %>
 	<%= link_to "新增", new_post_path %>
 <% end %>
 
