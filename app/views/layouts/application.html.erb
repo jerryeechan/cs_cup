@@ -21,7 +21,8 @@
 		<ul>
 		
 			<li class="category">2015中資盃</li>
-			<%puts current_user %>
+			<li><%= link_to "公告", posts_path %></li>
+			
 			<% if current_user%>
 			<li><%= link_to "更改隊伍資料",user_path(current_user) %></li>
 			<% else%>
@@ -30,9 +31,8 @@
 
 			<li><%= link_to "報名規則", register_rule_path %></li>
 			<li><%= link_to "章程賽制", rules_path %></li>
-			<li><%= link_to "公告", users_path %></li>
-			<li><%= link_to "賽程", root_path %></li>
-			<li><%= link_to "關於此計畫", about_path %></li>
+			<li><%= link_to "賽程", schedules_path %></li>
+			
 		</ul>
 		<div>
 		  <% if current_user %>

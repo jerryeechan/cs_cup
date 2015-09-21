@@ -26,8 +26,10 @@ Rails.application.routes.draw do
   get 'rules/badminton', to: 'rules#badminton'
   get 'rules/softball', to: 'rules#softball'
   get 'rules/volleyball', to: 'rules#volleyball'
+  get 'rules/pingpong', to: 'rules#pingpong'
   get 'rules/overall', to: 'rules#overall'
 
+  get 'schedules' , to: 'schedules#index'
 
   get 'auth/facebook', as: "user_login"
   get 'auth/facebook/callback', to: 'sessions#create'#'users#login'
