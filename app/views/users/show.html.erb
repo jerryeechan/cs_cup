@@ -41,6 +41,7 @@
 			<tr>
 				<th>
 					<%= form_for member, html: { multipart: true } do |f| %>
+						<%= puts member.image %>
 					    <%= image_tag(member.image.thumb) if member.image? %>
 					    <%= f.file_field :image ,accept: 'image/png,image/gif,image/jpeg', :class => 'file-input-field' %> 
 					    <%= f.submit "上傳",:class => 'file-upload-button' %>
