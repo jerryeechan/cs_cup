@@ -14,9 +14,7 @@
 	<% @users.each do |user| %>
 		
 			<div class="post_wrapper">
-				<% @users.each do |user|%>
 				<%= link_to user.school+" "+user.name , user_path(user) %>
-				<% end %>
 			</div>
 		
 	<% end %>
