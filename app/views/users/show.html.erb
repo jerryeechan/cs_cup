@@ -26,7 +26,10 @@
 			球類
 			<%= best_in_place @user, :sport, :as => :select, :collection => {"1" => "男籃", "2" => "女籃", "3" => "男排","4" => "女排", "5" => "壘球", "6" => "羽球", "7" => "桌球"}, :id => "balltype" %>
 			</br>
-	
+
+			隊長姓名(必須為隊員之一)
+			<%= best_in_place @user, :captain %>
+			</br>
 		</p>
 		
 
@@ -63,8 +66,8 @@
 				</th>
 				<th>
 					<%= form_for member, html: { multipart: true } do |f| %>
-					    <%= image_tag(member.idcardfront.thumb) if member.idcardback? %>
-					    <%= f.file_field :idcardback ,accept: 'image/png,image/gif,image/jpeg',:class => 'file-input-field'%> 
+					    <%= image_tag(member.idcardfront.thumb) if member.idcardfront? %>
+					    <%= f.file_field :idcardfront ,accept: 'image/png,image/gif,image/jpeg',:class => 'file-input-field'%> 
 					    <%= f.submit "上傳" ,:class => 'file-upload-button'%>
 					<% end %>
 				</th>

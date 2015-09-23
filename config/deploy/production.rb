@@ -11,9 +11,9 @@
 
 # role-based syntax
 # ==================
-role :app, %w{140.114.197.41}
-role :web, %w{140.114.197.41}
-role :db,  %w{140.114.197.41}
+role :app, %w{140.114.86.34}
+role :web, %w{140.114.86.34}
+role :db,  %w{140.114.86.34}
 # Defines a role with one or multiple servers. The primary server in each
 # group is considered to be the first unless any  hosts have the primary
 # property set. Specify the username and a domain or IP for the server.
@@ -35,7 +35,7 @@ role :db,  %w{140.114.197.41}
 set :stage, :production
 
 
-server '140.114.197.41',user: 'uka', roles: %w{web app}
+server '140.114.86.34',user: 'uka', roles: %w{web app}
 set :ssh_options, { :forward_agent => true}
 # Custom SSH Options
 # ==================

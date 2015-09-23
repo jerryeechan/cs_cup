@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   			@users = User.search(params[:searchbar])
   	end
   	def user_params
-		params.require(:user).permit(:email,:name, :school, :sport, :department, :transfercode)
+		params.require(:user).permit(:email,:name, :school, :sport, :department, :transfercode,:captain)
 	end
 
 
