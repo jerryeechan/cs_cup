@@ -1,0 +1,25 @@
+[2015-09-22 02:48:27] INFO  WEBrick 1.3.1
+[2015-09-22 02:48:27] INFO  ruby 2.2.1 (2015-02-26) [x86_64-darwin14]
+[2015-09-22 02:48:27] INFO  WEBrick::HTTPServer#start: pid=22640 port=3000
+[2015-09-22 02:49:00] FATAL SignalException: SIGTERM
+	/Users/jerry/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:174:in `select'
+	/Users/jerry/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:174:in `block in start'
+	/Users/jerry/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:32:in `start'
+	/Users/jerry/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:162:in `start'
+	/Users/jerry/.rvm/gems/ruby-2.2.1/gems/rack-1.6.4/lib/rack/handler/webrick.rb:34:in `run'
+	/Users/jerry/.rvm/gems/ruby-2.2.1/gems/rack-1.6.4/lib/rack/server.rb:286:in `start'
+	/Users/jerry/.rvm/gems/ruby-2.2.1/gems/railties-4.2.3/lib/rails/commands/server.rb:80:in `start'
+	/Users/jerry/.rvm/gems/ruby-2.2.1/gems/railties-4.2.3/lib/rails/commands/commands_tasks.rb:80:in `block in server'
+	/Users/jerry/.rvm/gems/ruby-2.2.1/gems/railties-4.2.3/lib/rails/commands/commands_tasks.rb:75:in `tap'
+	/Users/jerry/.rvm/gems/ruby-2.2.1/gems/railties-4.2.3/lib/rails/commands/commands_tasks.rb:75:in `server'
+	/Users/jerry/.rvm/gems/ruby-2.2.1/gems/railties-4.2.3/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	/Users/jerry/.rvm/gems/ruby-2.2.1/gems/railties-4.2.3/lib/rails/commands.rb:17:in `<top (required)>'
+	bin/rails:8:in `require'
+	bin/rails:8:in `<main>'
+[2015-09-22 02:49:00] INFO  going to shutdown ...
+[2015-09-22 02:49:00] INFO  WEBrick::HTTPServer#start done.
+=> Booting WEBrick
+=> Rails 4.2.3 application starting in production on http://0.0.0.0:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+Exiting
