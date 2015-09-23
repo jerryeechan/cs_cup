@@ -32,14 +32,27 @@ class User < ActiveRecord::Base
     has_and_belongs_to_many :teams ,:join_table =>'users_teams'
     
     
-   def self.from_omniauth(auth)
+    def self.from_omniauth(auth)
     access_token = auth.credentials.token
 
     facebook = Koala::Facebook::API.new(access_token)
     public_attr = facebook.get_object("me") 
     
-    where(uid: auth.uid).first_or_initialize.tap do |user|
+    if exists?(uid: auth.uid)
+      
+    else
+      User.new.tap do |user|
+        user.school = "請點擊填入學校"
+      user.department = "請點擊填入系所"
+      user.sport = "請點擊選擇球類項目"
+      user.transfercode = "請點擊填入轉帳代碼"
+      user.captain = "請點擊填入隊長姓名"
+      user.save!
+      end
+    end
 
+
+    where(uid: auth.uid).first.tap do |user|
 
       user.email = auth.info.email
       puts "--debug print out"
@@ -60,11 +73,8 @@ class User < ActiveRecord::Base
       user.link= auth.extra.raw_info.link
       user.gender = auth.extra.raw_info.gender
       puts user
-      user.school = "請點擊填入學校"
-      user.department = "請點擊填入系所"
-      user.sport = "請點擊選擇球類項目"
-      user.transfercode = "請點擊填入轉帳代碼"
 
+      
       user.save!
   	end
   end
