@@ -52,28 +52,49 @@
 				</th>
 				<th>
 					<%= form_for member, html: { multipart: true } do |f| %>
+						<!-- image -->
+						<% if is_authorized_user %>
+					    <%= image_tag(member.studentidcardfront) if member.studentidcardfront? %>
+					    <% else %>
 					    <%= image_tag(member.studentidcardfront.thumb) if member.studentidcardfront? %>
+					    <% end %>
 					    <%= f.file_field :studentidcardfront ,accept: 'image/png,image/gif,image/jpeg', :class => 'file-input-field'%> 
 					    <%= f.submit "上傳",:class => 'file-upload-button' %>
 					<% end %>
 				</th>
 				<th>
 					<%= form_for member, html: { multipart: true } do |f| %>
-					    <%= image_tag(member.studentidcardback.thumb) if member.studentidcardback? %>
+						<!-- image -->
+						<% if is_authorized_user %>
+							<%= image_tag(member.studentidcardback) if member.studentidcardback? %>
+						<% else %>
+					    	<%= image_tag(member.studentidcardback.thumb) if member.studentidcardback? %>
+					    <% end %>
+					    <!-- image -->
 					    <%= f.file_field :studentidcardback ,accept: 'image/png,image/gif,image/jpeg',:class => 'file-input-field'%> 
 					    <%= f.submit "上傳",:class => 'file-upload-button' %>
 					<% end %>
 				</th>
 				<th>
 					<%= form_for member, html: { multipart: true } do |f| %>
-					    <%= image_tag(member.idcardfront.thumb) if member.idcardfront? %>
+						<!-- image -->
+						<% if is_authorized_user %>
+					    	<%= image_tag(member.idcardfront) if member.idcardfront? %>
+					    <% else%>
+					    	<%= image_tag(member.idcardfront.thumb) if member.idcardfront? %>
+					    <% end %>
+					    <!-- image -->
 					    <%= f.file_field :idcardfront ,accept: 'image/png,image/gif,image/jpeg',:class => 'file-input-field'%> 
 					    <%= f.submit "上傳" ,:class => 'file-upload-button'%>
 					<% end %>
 				</th>
 				<th>
 					<%= form_for member, html: { multipart: true } do |f| %>
-					    <%= image_tag(member.idcardback.thumb) if member.idcardback? %>
+						<% if is_authorized_user %>
+							<%= image_tag(member.idcardback) if member.idcardback? %>
+						<% else%>
+					    	<%= image_tag(member.idcardback.thumb) if member.idcardback? %>
+					    <% end %>
 					    <%= f.file_field :idcardback ,accept: 'image/png,image/gif,image/jpeg',:class => 'file-input-field'%> 
 					    <%= f.submit "上傳" ,:class => 'file-upload-button'%>
 					<% end %>

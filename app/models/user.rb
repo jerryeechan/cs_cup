@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
       
     else
       User.new.tap do |user|
+        user.uid = auth.uid
         user.school = "請點擊填入學校"
       user.department = "請點擊填入系所"
       user.sport = "請點擊選擇球類項目"
@@ -54,7 +55,7 @@ class User < ActiveRecord::Base
 
     where(uid: auth.uid).first.tap do |user|
 
-      user.email = auth.info.email
+      #user.email = auth.info.email
       puts "--debug print out"
       puts auth 
       puts auth.info
