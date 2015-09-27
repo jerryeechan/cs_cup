@@ -28,6 +28,11 @@
 	<label>姓名</label>
 	<%= f.text_field :name %><br>
 	<br>
+
+	<label>是否為體保生</label>
+	<%= f.check_box :isGifted%><br>
+
+	<br>
 	<label>身份證字號</label>
 	<%= f.text_field :person_id %><br>
 	<br>
@@ -47,6 +52,6 @@
 	<label>備註</label>
 	<%= f.text_field :etc %><br>
 	<br>
-
+	
 	<%= f.submit "新增隊員" %>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923135622) do
+ActiveRecord::Schema.define(version: 20150927030301) do
 
   create_table "members", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150923135622) do
     t.string   "studentidcardback"
     t.string   "idcardfront"
     t.string   "idcardback"
+    t.boolean  "isGifted"
   end
 
   add_index "members", ["user_id"], name: "index_members_on_user_id"

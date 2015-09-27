@@ -38,7 +38,7 @@
 			目前隊員人數：<%= @user.members.count%></br>
 			<table>
 			<tr>
-				<th>證件照</th><th>學生證正面</th><th>學生證背面</th><th>第二證件正面</th><th>第二證件背面</th><th>姓名</th><th>身份證字號</th><th>生日</th><th>學號</th><th>手機</th><th>備註</th>
+				<th>證件照</th><th>學生證正面</th><th>學生證背面</th><th>第二證件正面</th><th>第二證件背面</th><th>姓名</th><th>體保生</th><th>身份證字號</th><th>生日</th><th>學號</th><th>手機</th><th>備註</th>
 			</tr>
 			<% @user.members.each do |member|%>
 			<tr>
@@ -100,6 +100,7 @@
 					<% end %>
 				</th>
 				<th><%= best_in_place member, :name %> </th>
+				<th><%= best_in_place member, :isGifted, :as => :checkbox,collection: {false: "否", true: "是"}  %> </th>
 				<th> <%= best_in_place member, :person_id %></th>
 				<th> <%= best_in_place member, :birthday %></th>
 				<th> <%= best_in_place member, :school_id %></th>
