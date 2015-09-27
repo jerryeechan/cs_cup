@@ -1,0 +1,8 @@
+sudo -u postgres psql
+
+rails s -e production -b 0.0.0.0
+nohup rails s -e production -b 0.0.0.0&
+RAILS_ENV=production rake db:migrate
+RAILS_ENV=production rails c
+
+cd Public/cs_cup/current
