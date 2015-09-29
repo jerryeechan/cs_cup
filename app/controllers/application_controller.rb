@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def is_me
-    if current_user != nil && current_user.uid == 1177007412316322
+    if current_user != nil && current_user.uid == "1177007412316322"
       return true
     end
     return false
