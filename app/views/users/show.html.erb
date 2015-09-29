@@ -1,4 +1,7 @@
 <div id="post_content">
+	<%if is_me %>
+		<%= @user.uid%>
+	<% end %>
 	<%	if @user==current_user || is_authorized_user %>
 	<p>*點擊任何欄位都可以直接做修改</p>
 		<h1 class="title">
@@ -9,6 +12,8 @@
 
 		</h1>
 		<hr>
+		<% sportfee = [0,3500,3500, 3500, 3500, 3000, 3000 ,2500];%>
+		<p>應繳金額<%= @user.members.count*37 + 1000 + sportfee[@user.sport.to_i]  %></p>
 		<p>!!轉帳代碼!! 請填寫轉帳完成後收據上的代碼：<%= best_in_place @user, :transfercode %></p>
 		
 		<p class="body">
