@@ -17,6 +17,39 @@ class User < ActiveRecord::Base
   #    user.save!
   #  end
   #end
+    scope :sport, -> (sport) { 
+      if sport =='0'
+        where(nil)
+      else
+      where sport: sport 
+      end
+    }
+    scope :money_transfered, ->(is){
+      puts "money_transfered"
+      puts is
+      if is == "on"
+        where.not(transfercode: "請點擊填入轉帳代碼")
+      else
+        whrer(nil)
+      end
+
+    }
+    scope :is_register_confirmed, ->(is){
+      if is == "on"
+        where(is_register_confirmed: true)
+      else
+        whrer(nil)
+      end
+    }
+
+    def self.filter(filtering_params)
+      results = self.all
+      filtering_params.each do |key, value|
+        results = results.public_send(key, value) if value.present?
+      end
+      results
+    end
+
     def self.search(search)
       search_condition = "%#{" + search + "}%"
      #@users = where(name: search)

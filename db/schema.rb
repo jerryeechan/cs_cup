@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927030301) do
+ActiveRecord::Schema.define(version: 20151001123101) do
 
   create_table "members", force: :cascade do |t|
     t.string   "name"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150927030301) do
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       default: 0, null: false
+    t.integer  "sign_in_count",         default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150927030301) do
     t.string   "sport"
     t.string   "transfercode"
     t.string   "captain"
+    t.boolean  "is_register_confirmed"
   end
 
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true

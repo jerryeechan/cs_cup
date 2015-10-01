@@ -2,7 +2,17 @@
 	<%if is_me %>
 		<%= @user.uid%>
 	<% end %>
+	<% if is_authorized_user %>
+		<%= best_in_place @user, :is_register_confirmed, as: :checkbox, collection: {false: "尚未確認", true: "報名完成"}%>
+	<% end %>
 	<%	if @user==current_user || is_authorized_user %>
+
+		<!--register confirmed-->
+		<% if @user.is_register_confirmed == true %>
+		<font color="green">恭喜！已完成報名手續!!</font>
+		<% end %>
+		<!--register confirmed-->
+
 	<p>*點擊任何欄位都可以直接做修改</p>
 		<h1 class="title">
 			

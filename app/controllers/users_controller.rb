@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
 	def index
 		#@users = User.all.order('created_at DESC')
-		
+		@users = User.filter(params.slice(:sport,:money_transfered,:is_register_confirmed))
+=begin		
 		if params[:searchbar]==nil
 			puts 'nil search'
 			@users = User.all.order('created_at DESC')
 		else
   			@users = search
   		end
+=end
 	end
 	def show
 		@user = User.find(params[:id])
@@ -36,8 +38,9 @@ class UsersController < ApplicationController
   			@users = User.search(params[:searchbar])
   	end
   	def user_params
-		params.require(:user).permit(:email,:name, :school, :sport, :department, :transfercode,:captain)
+		params.require(:user).permit(:email,:name, :school, :sport, :department, :transfercode,:captain,:is_register_confirmed)
 	end
 
+	
 
 end

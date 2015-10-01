@@ -1,16 +1,42 @@
 <div id="main-core">
 <% if is_authorized_user %>
+
 	<%= form_tag 'users', :controller=>'users', :method => :get do %>
 	  <p>
+	  	<%= select_tag "sport" , "
+	  	<option value = '0'>所有</option>
+	  	<option value = '1'>男籃</option>
+	  	<option value = '2'>女籃</option>
+	  	<option value = '3'>男排</option>
+	  	<option value = '4'>女排</option>
+	  	<option value = '5'>壘球</option>
+	  	<option value = '6'>羽排</option>
+	  	<option value = '7'>桌球</option>"
+	  	.html_safe%>
+		<%= check_box_tag :money_transfered, params[:money_transfered] %>已填入轉帳代碼
+		<%= check_box_tag :is_register_confirmed, params[:is_register_confirmed] %>已確認報名
 	    <%= text_field_tag :searchbar, params[:search] %>
 	    <%= submit_tag "Search", :name => nil %>
 	  </p>
 	<% end %>
+	
+
+
+	<%=
+=begin
+	 form_for @users do |f| %>
+
+		 <%= f.check_box :transfercode  %>轉帳完成
+		 <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+	<% end 
+=end
+	%>
+
 
 	<% if @users.count==0 %>
 	<p class="">no related found</p>
 	<% end %>
-
+	
 	<% @users.each do |user| %>
 		
 			<div class="post_wrapper">
