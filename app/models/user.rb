@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
       if is == "on"
         where.not(transfercode: "請點擊填入轉帳代碼")
       else
-        whrer(nil)
+        where(transfercode: "請點擊填入轉帳代碼")
       end
 
     }
@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
       if is == "on"
         where(is_register_confirmed: true)
       else
-        whrer(nil)
+        where(is_register_confirmed: false)
       end
     }
     scope :fbname, ->(name){
