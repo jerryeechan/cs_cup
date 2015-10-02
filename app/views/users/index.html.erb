@@ -15,7 +15,7 @@
 	  	.html_safe%>
 		<%= check_box_tag :money_transfered, params[:money_transfered] %>已填入轉帳代碼
 		<%= check_box_tag :is_register_confirmed, params[:is_register_confirmed] %>已確認報名
-	    <%= text_field_tag :searchbar, params[:search] %>
+	    <%= text_field_tag :fbname, params[:name] %>
 	    <%= submit_tag "Search", :name => nil %>
 	  </p>
 	<% end %>

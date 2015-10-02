@@ -1,3 +1,5 @@
+ssh uka@140.114.86.34
+
 sudo -u postgres psql
 
 rails s -e production -b 0.0.0.0

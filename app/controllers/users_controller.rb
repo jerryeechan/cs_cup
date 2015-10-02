@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	def index
 		#@users = User.all.order('created_at DESC')
-		@users = User.filter(params.slice(:sport,:money_transfered,:is_register_confirmed))
+		@users = User.filter(params.slice(:sport,:money_transfered,:is_register_confirmed,:fbname))
 =begin		
 		if params[:searchbar]==nil
 			puts 'nil search'

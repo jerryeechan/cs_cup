@@ -41,9 +41,14 @@ class User < ActiveRecord::Base
         whrer(nil)
       end
     }
+    scope :fbname, ->(name){
+      puts name
 
+      where "name like ?", "#{name}%"
+    }
     def self.filter(filtering_params)
       results = self.all
+      puts results
       filtering_params.each do |key, value|
         results = results.public_send(key, value) if value.present?
       end
