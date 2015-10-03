@@ -24,7 +24,7 @@
 		<hr>
 		<% sportfee = [0,3500,3500, 3500, 3500, 3500, 3000 ,2500];%>
 		<p>應繳金額<%= @user.members.count*37 + 1000 + sportfee[@user.sport.to_i]  %></p>
-		<p>!!轉帳代碼!! 請填寫轉帳完成後收據上的代碼：<%= best_in_place @user, :transfercode %></p>
+		<p>請填寫轉帳完成後收據上的代碼(若使用匯款請填入匯款人的姓名)：<%= best_in_place @user, :transfercode %></p>
 		
 		<p class="body">
 			聯絡信箱：

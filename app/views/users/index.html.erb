@@ -13,8 +13,20 @@
 	  	<option value = '6'>羽排</option>
 	  	<option value = '7'>桌球</option>"
 	  	.html_safe%>
-		<%= check_box_tag :money_transfered, params[:money_transfered] %>已填入轉帳代碼
-		<%= check_box_tag :is_register_confirmed, params[:is_register_confirmed] %>已確認報名
+	  	
+	  	<%= select_tag :money_transfered , "
+	  	<option value = 'all'>所有</option>
+	  	<option value = 'true'>已填代碼</option>
+	  	<option value = 'false'>未填代碼</option>"
+	  	.html_safe%>
+		
+		<%= select_tag :is_register_confirmed , "
+	  	<option value = 'all'>所有</option>
+	  	<option value = 'true'>已確認</option>
+	  	<option value = 'false'>未確認</option>"
+	  	.html_safe%>
+		
+		
 	    <%= text_field_tag :fbname, params[:name] %>
 	    <%= submit_tag "Search", :name => nil %>
 	  </p>

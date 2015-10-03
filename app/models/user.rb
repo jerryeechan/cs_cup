@@ -27,30 +27,32 @@ class User < ActiveRecord::Base
     scope :money_transfered, ->(is){
       puts "money_transfered"
       puts is
-      if is == "on"
+      if is == "true"
         where.not(transfercode: "請點擊填入轉帳代碼")
-      else
+      elsif is == "false"
         where(transfercode: "請點擊填入轉帳代碼")
+      else
+        where(nil)
       end
-
     }
     scope :is_register_confirmed, ->(is){
-      if is == "on"
+      if is == "true"
         where(is_register_confirmed: true)
+      elsif is == "false" 
+        #where("is_register_confirmed = NULL or is_register_confirmed = ?",false)
+        where("is_register_confirmed IS NULL or is_register_confirmed = ?",false)
       else
-        where(is_register_confirmed: false)
+        where(nil)
       end
     }
     scope :fbname, ->(name){
-      puts name
-
       where "name like ?", "#{name}%"
     }
     def self.filter(filtering_params)
       results = self.all
       puts results
       filtering_params.each do |key, value|
-        results = results.public_send(key, value) if value.present?
+        results = results.public_send(key, value)
       end
       results
     end
