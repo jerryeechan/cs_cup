@@ -34,20 +34,8 @@
 	
 
 
-	<%=
-=begin
-	 form_for @users do |f| %>
 
-		 <%= f.check_box :transfercode  %>轉帳完成
-		 <%= f.submit "Submit", :disable_with => 'Submiting...' %>
-	<% end 
-=end
-	%>
-
-
-	<% if @users.count==0 %>
-	<p class="">no related found</p>
-	<% end %>
+	<p>符合隊伍數：<%= @users.count %></p>
 	
 	<% @users.each do |user| %>
 		

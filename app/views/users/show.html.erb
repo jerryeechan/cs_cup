@@ -23,8 +23,13 @@
 		</h1>
 		<hr>
 		<% sportfee = [0,3500,3500, 3500, 3500, 3500, 3000 ,2500];%>
-		<p>應繳金額<%= @user.members.count*37 + 1000 + sportfee[@user.sport.to_i]  %></p>
-		<p>請填寫轉帳完成後收據上的代碼(若使用匯款請填入匯款人的姓名)：<%= best_in_place @user, :transfercode %></p>
+		<p>是否加保險(若不保險，比賽第一天檢錄時繳交切結書) <%= best_in_place @user, :has_insurance, as: :checkbox, collection: {false: "否", true: "是"} %> </p> 
+		<% fee = 1000 + sportfee[@user.sport.to_i] %>
+		<% if @user.has_insurance %>
+		<% fee += @user.members.count*37 %>
+		<% end%>
+		<p>應繳金額<%=  fee %></p>
+		<p>轉帳人帳號後五碼 (匯款請填 匯款人 姓名)：<%= best_in_place @user, :transfercode %></p>
 		
 		<p class="body">
 			聯絡信箱：
@@ -53,7 +58,7 @@
 			目前隊員人數：<%= @user.members.count%></br>
 			<table>
 			<tr>
-				<th>證件照</th><th>學生證正面</th><th>學生證背面</th><th>第二證件正面</th><th>第二證件背面</th><th>姓名</th><th>體保生</th><th>身份證字號</th><th>生日</th><th>學號</th><th>手機</th><th>備註</th>
+				<th>證件照</th><th>學生證正面</th><th>學生證背面(若無註冊章，則用在學證明)</th><th>第二證件正面</th><th>第二證件背面</th><th>姓名</th><th>體保生</th><th>身份證字號</th><th>生日</th><th>學號</th><th>手機</th><th>備註</th>
 			</tr>
 			<% @user.members.each do |member|%>
 			<tr>
