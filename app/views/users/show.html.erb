@@ -2,8 +2,9 @@
 	<%if is_me %>
 		<%= @user.uid%>
 	<% end %>
+	<% confirm_state_list = {pending:"未確認",payed:"已繳費", success:"報名成功",mailed:"已寄信"}%>
 	<% if is_authorized_user %>
-		<% confirm_state_list = {pending:"未確認",payed:"已繳費", success:"報名成功",mailed:"已寄信"}%>
+		
 		
 
 		<%= best_in_place @user, :confirm_state, :as => :select, :collection => confirm_state_list %>
