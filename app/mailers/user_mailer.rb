@@ -7,8 +7,9 @@ class UserMailer < ApplicationMailer
   #
   def confirm(params)
     @greeting = ""
+    @success = params[:success]
     @messages = params[:content]
-    mail(:to =>params[:email],:subject=>"中資盃報名通知")
+    mail(:to =>params[:email],:subject=>"中資盃報名結果通知")
   end
 
 end

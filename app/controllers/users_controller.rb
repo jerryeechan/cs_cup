@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   	end
   	
   	def send_email
-		UserMailer.confirm(params).deliver_now!
+		UserMailer.confirm(params).deliver_later!
     	redirect_to :back
 	end
   	def search

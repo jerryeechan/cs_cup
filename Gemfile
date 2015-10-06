@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 #gem 'devise'#, '~> 3.3.0'
-
+gem 'sidekiq'
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'koala', "~>1.10.0rc"

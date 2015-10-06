@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 
 module Blog
   class Application < Rails::Application
+    config.active_job.queue_adapter = :sidekiq 
+    config.eager_load_paths += %W( #{config.root}/app/jobs )
     #config.assets.paths += ["#{Rails.root}/../image/"]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
