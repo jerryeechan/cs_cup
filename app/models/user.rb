@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
       if state == "all"
         where(nil)
       else
-        where(is_register_confirmed: state)
+        where(confirm_state: state)
       end
     }
     scope :fbname, ->(name){
