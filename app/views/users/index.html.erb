@@ -10,7 +10,7 @@
 	  	<option value = '3'>男排</option>
 	  	<option value = '4'>女排</option>
 	  	<option value = '5'>壘球</option>
-	  	<option value = '6'>羽排</option>
+	  	<option value = '6'>羽球</option>
 	  	<option value = '7'>桌球</option>"
 	  	.html_safe%>
 	  	
@@ -19,12 +19,14 @@
 	  	<option value = 'true'>已填代碼</option>
 	  	<option value = 'false'>未填代碼</option>"
 	  	.html_safe%>
-		
-		<%= select_tag :is_register_confirmed , "
+	
+	  	<%= select_tag :confirm_state, "
 	  	<option value = 'all'>所有</option>
-	  	<option value = 'true'>已確認</option>
-	  	<option value = 'false'>未確認</option>"
-	  	.html_safe%>
+	  	<option value = 'pending'>未確認</option>
+	  	<option value = 'payed'>確認匯款</option>
+	  	<option value = 'success'>報名成功</option>
+	  	<option value = 'mailed'>已寄信</option>".html_safe%>
+
 		
 		
 	    <%= text_field_tag :fbname, params[:name] %>

@@ -28,6 +28,10 @@
 			<% else%>
 			<li><%= link_to "報名",user_login_path %></li>
 			<% end %>
+			
+			<% if is_authorized_user %>
+			<li><%= link_to "報名名單", users_path %></li>	
+			<% end %>
 
 			<li><%= link_to "報名規則", register_rule_path %></li>
 			<li><%= link_to "章程賽制", rules_path %></li>

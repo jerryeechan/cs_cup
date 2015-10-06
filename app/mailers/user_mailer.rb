@@ -5,10 +5,10 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.confirm.subject
   #
-  def confirm(emal)
-    @greeting = "Hi"
-    @messages = "test"
-    mail(:to =>email,:subject=>"Registered")
+  def confirm(params)
+    @greeting = ""
+    @messages = params[:content]
+    mail(:to =>params[:email],:subject=>"中資盃報名通知")
   end
 
 end

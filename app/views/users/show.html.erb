@@ -3,14 +3,18 @@
 		<%= @user.uid%>
 	<% end %>
 	<% if is_authorized_user %>
-		<%= best_in_place @user, :is_register_confirmed, as: :checkbox, collection: {false: "尚未確認", true: "報名完成"}%>
+		<% confirm_state_list = {pending:"未確認",payed:"已繳費", success:"報名成功",mailed:"已寄信"}%>
+		
+
+		<%= best_in_place @user, :confirm_state, :as => :select, :collection => confirm_state_list %>
+			
+
+		
 	<% end %>
 	<%	if @user==current_user || is_authorized_user %>
-
+		
 		<!--register confirmed-->
-		<% if @user.is_register_confirmed == true %>
-		<font color="green">恭喜！已完成報名手續!!</font>
-		<% end %>
+		<p> <font color="green"> 目前報名進度：<%= confirm_state_list[@user.confirm_state.to_sym] %> </font></p>
 		<!--register confirmed-->
 
 	<p>*點擊任何欄位都可以直接做修改</p>
@@ -157,6 +161,19 @@
 		<% else %>
 			<p>隊員人數已達上限</p>		
 		<% end %>
+
+		<!--通知隊伍發送email-->
+		<% if is_authorized_user %>
+		<p>通知隊伍</p>
+		
+			<%= form_tag('send_email', :controller=>'users', method:(:post))do %>
+				<%= text_field_tag :content%>
+				<%= hidden_field_tag :email, @user.email %>
+				<%= submit_tag "發送"%>
+			<% end %>  
+		<% end%>
+		<!--通知隊伍發送email-->
+
 	<% end %>
 
 

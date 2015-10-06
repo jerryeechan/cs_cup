@@ -35,14 +35,11 @@ class User < ActiveRecord::Base
         where(nil)
       end
     }
-    scope :is_register_confirmed, ->(is){
-      if is == "true"
-        where(is_register_confirmed: true)
-      elsif is == "false" 
-        #where("is_register_confirmed = NULL or is_register_confirmed = ?",false)
-        where("is_register_confirmed IS NULL or is_register_confirmed = ?",false)
-      else
+    scope :confirm_state, ->(state){
+      if state == "all"
         where(nil)
+      else
+        where(is_register_confirmed: state)
       end
     }
     scope :fbname, ->(name){
