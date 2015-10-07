@@ -174,6 +174,7 @@
 			  	<option value = 'false'>補資料</option>".html_safe%>
 			  	<br>
 			  	<%= text_area_tag :content%> 
+			  	<%= hidden_field_tag :id, @user.id %>
 				<%= hidden_field_tag :email, @user.email %>
 				<%= submit_tag "發送"%>
 			<% end %>  

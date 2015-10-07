@@ -33,7 +33,10 @@ class UsersController < ApplicationController
   	end
   	
   	def send_email
-		UserMailer.confirm(params).deliver_later!(wait: 1.minute)
+		UserMailer.confirm(params).deliver_later!
+		@user = User.find(params[:id])
+		@user.confirm_state = "mailed"
+		@user.save
     	redirect_to :back
 	end
   	def search
