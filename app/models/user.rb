@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   #    user.save!
   #  end
   #end
+
+    default_scope { order(updated_at: :desc) }
+
     scope :sport, -> (sport) { 
       if sport =='0'
         where(nil)

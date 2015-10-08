@@ -34,15 +34,12 @@
 	  </p>
 	<% end %>
 	
-
-
-
 	<p>符合隊伍數：<%= @users.count %></p>
 	
 	<% @users.each do |user| %>
 		
 			<div class="post_wrapper">
-				<%= link_to user.school+" "+user.name , user_path(user) %>
+				<%= link_to user.school+" "+user.name+user.updated_at.to_s, user_path(user) %>
 			</div>
 		
 	<% end %>
