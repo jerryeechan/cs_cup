@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   end
 
 post 'users/send_email', to:'users#send_email'
+
   resources :users do
     resources :members
   end
 
   resources :members
-
 
   get 'admin/print', to: 'admin#print'
   

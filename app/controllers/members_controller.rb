@@ -9,7 +9,10 @@ class MembersController < ApplicationController
 		@user.members.create(member_params)
 		redirect_to @user
 	end
-
+	def index
+		@user = User.find(params[:user_id])
+		@members = @user.members
+	end
 	def update
 		
 		@member = Member.find(params[:id])

@@ -34,9 +34,11 @@ class UsersController < ApplicationController
   	
   	def send_email
 		UserMailer.confirm(params).deliver_later!
-		@user = User.find(params[:id])
-		@user.confirm_state = "mailed"
-		@user.save
+		if(params[:success]==true)
+			@user = User.find(params[:id])
+			@user.confirm_state = "mailed"
+			@user.save
+		end
     	redirect_to :back
 	end
   	def search

@@ -1,7 +1,5 @@
 <% @members.each do |member| %>
 	<div class="member_wrapper">
-		<%= best_in_place @user, :name %>
-		<%= best_in_place @user, :name %
-		<%= best_in_place @user, :name %>
+		<%= best_in_place member, :name %>
 	</div>
 <% end %>
