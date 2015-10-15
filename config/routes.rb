@@ -30,6 +30,10 @@ post 'users/send_email', to:'users#send_email'
   get 'rules/pingpong', to: 'rules#pingpong'
   get 'rules/overall', to: 'rules#overall'
 
+  get 'info', to: 'info#index'
+  get 'info/map' ,to: 'info#map'
+  get 'info/food' ,to: 'info#food'
+
   get 'schedules' , to: 'schedules#index'
 
   get 'auth/facebook', as: "user_login"
