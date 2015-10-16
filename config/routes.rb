@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
 post 'users/send_email', to:'users#send_email'
-
+get 'users/close', as:'user_close', to:'users#close'
   resources :users do
     resources :members
   end
@@ -42,7 +42,7 @@ post 'users/send_email', to:'users#send_email'
   #get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
-
+  
 
 resources :sessions, only: [:create, :destroy]
 

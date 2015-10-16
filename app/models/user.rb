@@ -79,7 +79,9 @@ class User < ActiveRecord::Base
     public_attr = facebook.get_object("me") 
     
     if exists?(uid: auth.uid)
-      
+#!!!!! new registration closed
+=begin
+
     else
       User.new.tap do |user|
         user.uid = auth.uid
@@ -91,33 +93,34 @@ class User < ActiveRecord::Base
       user.save!
       end
     end
+=end
 
+      where(uid: auth.uid).first.tap do |user|
 
-    where(uid: auth.uid).first.tap do |user|
+        #user.email = auth.info.email
+        puts "--debug print out"
+        puts auth 
+        puts auth.info
+        puts auth["info"]
+        puts user.email
+        puts auth.extra.raw_info.email
+        puts "debug print out"
+        
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.name = auth.info.name
+        user.oauth_token = auth.credentials.token
+        user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        
+        user.image = auth.info.image
+        user.link= auth.extra.raw_info.link
+        user.gender = auth.extra.raw_info.gender
+        puts user
 
-      #user.email = auth.info.email
-      puts "--debug print out"
-      puts auth 
-      puts auth.info
-      puts auth["info"]
-      puts user.email
-      puts auth.extra.raw_info.email
-      puts "debug print out"
-      
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      
-      user.image = auth.info.image
-      user.link= auth.extra.raw_info.link
-      user.gender = auth.extra.raw_info.gender
-      puts user
-
-      
-      user.save!
-  	end
+        
+        user.save!
+    	end
+    end
   end
 
   has_many :members
