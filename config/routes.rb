@@ -33,7 +33,8 @@ get 'users/close', as:'user_close', to:'users#close'
   get 'info', to: 'info#index'
   get 'info/map' ,to: 'info#map'
   get 'info/food' ,to: 'info#food'
-  get 'info/schedules', to:'info#schedules'
+  get 'info/hotel' ,to: 'info#hotel'
+  
 
   get 'schedules' , to: 'schedules#index'
 
