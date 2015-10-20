@@ -18,6 +18,7 @@ get 'users/close', as:'user_close', to:'users#close'
   resources :members
 
   get 'admin/print', to: 'admin#print'
+  get 'admin/insurance', to: 'admin#insurance'
   
   get 'register/rule', to: 'register#rule'
 
