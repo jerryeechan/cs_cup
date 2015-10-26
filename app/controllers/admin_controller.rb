@@ -1,6 +1,11 @@
 class AdminController < ApplicationController
 	def print
-		@users = User.all
+		if params[:sport]
+			@users = User.where(:sport =>params[:sport])
+		else
+			@users = User.all
+		end
+
 		#1073719775978420
 	end
 	def insurance

@@ -1,5 +1,7 @@
+var printer;
 var PlayerIDCardPrinter = function()
 {
+	this.imgurl = 'test';
 	var logoImg;
 	var logo_x = 62;
 	var logo_y;
@@ -57,15 +59,16 @@ var PlayerIDCardPrinter = function()
 
 	var a4_height = 3508;
 	var a4_width = 2480;
-	var offsetX = new Array(8);
-	var offsetY = new Array(8);
+	var offsetX = new Array(10);
+	var offsetY = new Array(10);
 	function initConstant()
 	{
+		console.log('initConstant');
 		offsetX[0] = 0;
-		offsetX[1] = a4_width/2;
-		for(var i=0;i<4;i++)
+		offsetX[1] = (a4_width-200)/2;
+		for(var i=0;i<5;i++)
 		{
-			offsetY[i] = i * a4_height/4;
+			offsetY[i] = i * (a4_height-200)/5;
 		}
 	}
 
@@ -73,15 +76,16 @@ var PlayerIDCardPrinter = function()
 	{
 		initConstant();
 		logoImg = $('#title').get(0);
-		canvas.width = 2123;
-		canvas.height = 3460;
+		canvas.width = 2480;
+		canvas.height = 3508;
 		ctx = canvas.getContext('2d');
-
-		logoImg.onload = function()
-		{
+		console.log(this.photoData);
+		var photoData = this.photoData;
+		
+			
 			//one page 0~7
 			var pageIndex = 0;
-			
+			var photoCnt = 0;
 			for (var i = 0; i < teams.length ; i++)
 			{
 				var team = teams[i];
@@ -89,10 +93,11 @@ var PlayerIDCardPrinter = function()
 				for (var j = 0; j < team.members.length;j++)
 				{
 					var member = team.members[j];
-					console.log(member);
-					patchMemberToCanvas(team,member,pageIndex);
+
+					patchMemberToCanvas(team,member,photoData[photoCnt],pageIndex);
 					pageIndex++;
-					if(pageIndex == 8)
+					photoCnt++;
+					if(pageIndex == 10)
 					{
 						pageIndex = 0;
 						//print out the result for download
@@ -101,28 +106,41 @@ var PlayerIDCardPrinter = function()
 					}
 				}
 			}
-			if(pageIndex!=0)
-				exportImage();
-		}
+			
+			exportImage();
+		
 	}
-	function patchMemberToCanvas(team,member,index)
+	function patchMemberToCanvas(team,member,photo,index)
 	{
 		// To DO ...
-		var offset_x = offsetX[index%2];
-		var offset_y = offsetY[Math.floor(index/2)];
-
-		ctx.drawImage(logoImg,offset_x,offset_y);
+		var offset_x = 100+offsetX[index%2];
+		var offset_y = 100+offsetY[Math.floor(index/2)];
+		ctx.lineWidth="3";
+		ctx.rect(offset_x,offset_y,offsetX[1],offsetY[1]);
+		
+		ctx.stroke();
+		ctx.drawImage(logoImg,offset_x+100,offset_y+50);
 
 
 		ctx.font = "100px Microsoft JhengHei";
-		ctx.fillText(member.name,content_x+offset_x,352+offset_y);
-		ctx.font = "60px Microsoft JhengHei";
+		ctx.fillText(member.name,content_x+offset_x,302+offset_y);
+		ctx.font = "48px Microsoft JhengHei";
+		//var img = new Image();
 		
+		ctx.fillText("學校："+team.school,content_x + offset_x,422+offset_y);
+		ctx.fillText("系所："+team.department,content_x+offset_x,513+offset_y);
+		ctx.fillText("項目："+team.sport,content_x+offset_x,602+offset_y);
 
-		ctx.fillText("學校："+team.school,content_x + offset_x,482+offset_y);
-		ctx.fillText("系所："+team.department,content_x+offset_x,573+offset_y);
-		ctx.fillText("項目："+team.sport,content_x+offset_x,662+offset_y);
-	
+		ctx.drawImage(photo,100+offset_x,302+offset_y,300,photo.height/photo.width*300);
+		/*
+		img.onload = function()
+		{
+			console.log(img);
+			ctx.drawImage(img,offset_x,352+offset_y)
+		};
+		*/
+		//console.log(member.image);
+		
 	}
 
 
@@ -135,6 +153,7 @@ var PlayerIDCardPrinter = function()
 
 
 	this.readURL = function(input) {
+		this.imgurl = 'test';
       if (input.files && input.files[0]) {
       	//create reader
           var reader = new FileReader();
@@ -156,40 +175,52 @@ var PlayerIDCardPrinter = function()
           readFile(0);
       }
 	}
+	
 	var exportImage = function()
 	{
 
-		console.log('Please wait');
+		console.log('Exporting image and download');
 		var url = canvas.toDataURL('image/png');
-		console.log($('#title').get(0));
 		$('#result').get(0).src = url;
-		var new_url = $('#result').get(0).src.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-		imgurl = new_url;
-		//window.open(new_url);
-		
+		//var new_url = $('#result').get(0).src.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+		//window.open(new_url,'_blank');
+		//ctx.clearRect(0,0,a4_width,a4_height);
+		//console.log(this);
 	}
-	var imgurl;
+	
 }
 
 
 function loadData(teams)
 {	
+
+	var photos = $('img.photo').get();
+	
+	
+	var photoData = new Array();
+	for(var photo in photos)
+	{
+		var newImg = new Image();
+		newImg.src = photo.src;
+		photoData.push(newImg);
+	}
+
 	printer = new PlayerIDCardPrinter();
 	printer.teams = teams;
-	console.log(printer.teams);
-	printer.assemble();
+	printer.photoData = photos;
 	
+	printer.assemble();
+	console.log('assemble done');
 }
 var openImage = function()
 {
-	window.open(printer.imgurl,'_blank');
+	loadData(teams);
+	//window.open(imgurl,'_blank');
 }
 
 
 var sportString = ["??","男籃","女籃", "男排", "女排", "壘球", "羽球" ,"桌球"];
 
-//$(document).ready(init);
-//$(window).bind('page:change', init);
 
 $(window).bind('page:change', function(){
   jQuery(".best_in_place").best_in_place();

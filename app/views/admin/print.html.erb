@@ -16,18 +16,20 @@
 		<% end %>	
 		<% user.members.each do |member|%>
 
-
+			<%= image_tag(member.image, :class =>'photo') %>
 			<%= javascript_tag do %>
 			var	memberData = new Object();
 			memberData.name = '<%= raw member.name %>';
-			memberData.image = '<%= raw member.image %>';
+			memberData.image = '<%= member.image %>';
 			teamData.members.push(memberData);
 			<% end %>
 		<% end %>
 	<% end %>
 
 	<%= javascript_tag do %>
-		loadData(teams);
+
+		//loadData(teams);
+
 	<% end %>	
 	
 	<button onclick="openImage();">Open image</button>
