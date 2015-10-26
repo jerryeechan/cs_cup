@@ -1,0 +1,16 @@
+<% if is_authorized_user %>
+	<table id='testTable'>
+	<% @users.each do |user| %>
+		<% user.members.each do |member|%>
+			<% if member.isGifted%>
+				<tr>
+					<td><%= user.school%> </td>
+					<td><%= user.department%> </td>
+					<td><%= get_sport_string(user.sport)%> </td>
+					<td><%= member.name%> </td>
+				</tr>
+			<% end %>
+		<% end %>
+	<% end %>
+	</table>
+<% end %>
