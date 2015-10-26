@@ -108,10 +108,10 @@ var PlayerIDCardPrinter = function()
 				}
 			}
 		}
-		*/
 		
-		//exportImage();
-		console.log(teams.length);
+		exportImage();
+		*/
+		//console.log(teams.length);
 		getOnePage();
 		
 	}
@@ -131,8 +131,7 @@ var PlayerIDCardPrinter = function()
 		{
 			var team = teams[team_i];
 			var member = team.members[member_i];	
-			console.log(member_i);
-			console.log(member);
+		
 			patchMemberToCanvas(team,member,photoData[photoCnt],i);
 
 			member_i++;
@@ -141,10 +140,10 @@ var PlayerIDCardPrinter = function()
 			{
 				member_i = 0;
 				team_i++;
-				console.log(team_i);
+				
 				if(team_i==teams.length)
 				{
-					console.log('break');
+				
 					end = true;
 					break;
 				}
@@ -159,6 +158,7 @@ var PlayerIDCardPrinter = function()
 		{
 			console.log('end:'+end);
 			setTimeout(getOnePage, 3000);
+			console.log('after set timeout');
 		}
 		
 	}
@@ -245,10 +245,12 @@ var PlayerIDCardPrinter = function()
 
 		console.log('Exporting image and download');
 		var url = canvas.toDataURL('image/png');
-		$('#result').get(0).src = url;
+		//$('#result').get(0).src = url;
 		var new_url = url.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
 		window.open(new_url,'_blank');
+		window.open(url,'_blank');
 		ctx.clearRect(0,0,a4_width,a4_height);
+		console.log('Exporting done');
 
 		//console.log(this);
 	}
