@@ -16,7 +16,7 @@ var PlayerIDCardPrinter = function()
 	var department_x = 0;
 	var department_y = 0;
 
-	var content_x = 557;
+	var content_x = 510;
 	var school_x = content_x;
 	var school_y = 100;
 
@@ -192,7 +192,7 @@ var PlayerIDCardPrinter = function()
 			photoWidth = content_x;
 		}
 
-		if(photoWidth>457)
+		if(photoWidth>content_x-100)
 			ctx.drawImage(photo,offset_x,222+offset_y,photoWidth,photoHeight);
 		else
 			ctx.drawImage(photo,100+offset_x,222+offset_y,photoWidth,photoHeight);
@@ -244,10 +244,10 @@ var PlayerIDCardPrinter = function()
 	{
 
 		console.log('Exporting image and download');
-		var url = canvas.toDataURL('image/png');
+		var url = canvas.toDataURL('image/jpg');
 		//$('#result').get(0).src = url;
-		var new_url = url.replace(/^data:image\/[^;]/, 'data:application/image');
-		window.open(new_url,'_blank');
+		//var new_url = url.replace(/^data:image\/[^;]/, 'data:application/image');
+		//window.open(new_url,'_blank');
 		window.open(url,'_blank');
 		ctx.clearRect(0,0,a4_width,a4_height);
 		console.log('Exporting done');
