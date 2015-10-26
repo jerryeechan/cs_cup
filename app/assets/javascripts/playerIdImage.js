@@ -157,7 +157,7 @@ var PlayerIDCardPrinter = function()
 		if(end == false)
 		{
 			console.log('end:'+end);
-			setTimeout(getOnePage, 3000);
+			setTimeout(getOnePage, 3);
 			console.log('after set timeout');
 		}
 		
