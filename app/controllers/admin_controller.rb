@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 	def print
 		if params[:sport]
-			@users = User.where(:sport =>params[:sport])
+			@users = User.where(:confirm_state => 'mailed',:sport =>params[:sport])
 		else
 			@users = User.all
 		end
