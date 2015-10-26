@@ -131,7 +131,12 @@ var PlayerIDCardPrinter = function()
 		ctx.fillText("系所："+team.department,content_x+offset_x,513+offset_y);
 		ctx.fillText("項目："+team.sport,content_x+offset_x,602+offset_y);
 
-		ctx.drawImage(photo,100+offset_x,302+offset_y,300,photo.height/photo.width*300);
+		var photoHeight = 400;
+		var photoWidth =  photo.width/photo.height*photoHeight;
+		if(photoWidth>357)
+			ctx.drawImage(photo,100-(photoWidth-357)+offset_x,222+offset_y,photoWidth,photoHeight);
+		else
+			ctx.drawImage(photo,100+offset_x,222+offset_y,photoWidth,photoHeight);
 		/*
 		img.onload = function()
 		{
@@ -182,8 +187,8 @@ var PlayerIDCardPrinter = function()
 		console.log('Exporting image and download');
 		var url = canvas.toDataURL('image/png');
 		$('#result').get(0).src = url;
-		var new_url = $('#result').get(0).src.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-		window.open(new_url,'_blank');
+		//var new_url = $('#result').get(0).src.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+		//window.open(new_url,'_blank');
 		ctx.clearRect(0,0,a4_width,a4_height);
 		//console.log(this);
 	}
