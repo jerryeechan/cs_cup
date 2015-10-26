@@ -6,4 +6,8 @@ class AdminController < ApplicationController
 	def insurance
 		@users = User.where(:confirm_state => 'mailed',:has_insurance => true)
 	end
+
+	def talented
+		@users = User.where(:confirm_state => 'mailed',:has_insurance => true)
+	end
 end

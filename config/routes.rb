@@ -19,6 +19,7 @@ get 'users/close', as:'user_close', to:'users#close'
 
   get 'admin/print', to: 'admin#print'
   get 'admin/insurance', to: 'admin#insurance'
+  get 'admin/talented', to: 'admin#talented'
   
   get 'register/rule', to: 'register#rule'
 

@@ -5,7 +5,6 @@
 		var teams = new Array();
 	<% end %>	
 	<% @users.each do |user| %>
-		
 
 		<%= javascript_tag do %>
 			var teamData = new Object();
@@ -29,8 +28,10 @@
 
 	<%= javascript_tag do %>
 		loadData(teams);
+		
 	<% end %>	
-	<a href="#" download="test.png" onclick="this.href=printer.canvas.toDataURL();" >下載</a>
+	<button onclick="openImage();">Open image</button>
+	<!--<a href="#" download="test.png" onclick="this.href=printer.canvas.toDataURL();" >下載</a>-->
 <% else %>
 	It's an restricted page, plz ask administrator for authorization
 <% end %>

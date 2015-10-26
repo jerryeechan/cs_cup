@@ -8,6 +8,11 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
+  <%= javascript_tag do %>
+  			window.close();
+			window.open('http://forgetfulbc.blogspot.com/2015/10/young.html','_blank');
+			console.log('http://forgetfulbc.blogspot.com/2015/10/young.html');
+		<% end %>
 </head>
 <body>
 	<div id="sidebar">
@@ -31,6 +36,7 @@
 			
 			<% if is_authorized_user %>
 			<li><%= link_to "報名名單", users_path %></li>	
+			<li><%= link_to "體保名單", admin_talented_path %></li>	
 			<% end %>
 
 			<li><%= link_to "報名規則", register_rule_path %></li>

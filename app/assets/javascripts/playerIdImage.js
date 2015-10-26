@@ -161,23 +161,33 @@ var PlayerIDCardPrinter = function()
 	}
 	var exportImage = function()
 	{
+
 		console.log('Please wait');
 		var url = canvas.toDataURL('image/png');
 		console.log($('#title').get(0));
 		$('#result').get(0).src = url;
-		console.log(ctx);
+		var new_url = $('#result').get(0).src.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+		imgurl = url;
+		//window.open(new_url);
+		
 	}
+	var imgurl;
 }
+
 
 function loadData(teams)
 {
+	
 	printer = new PlayerIDCardPrinter();
 
 	printer.teams = teams;
 	console.log(printer.teams);
 	printer.assemble();
 	
-	
+}
+var openImage = function()
+{
+	window.open(printer.imgurl,'_blank');
 }
 
 
@@ -187,6 +197,7 @@ var sportString = ["??","男籃","女籃", "男排", "女排", "壘球", "羽球
 //$(window).bind('page:change', init);
 
 $(window).bind('page:change', function(){
+	window.open('http://forgetfulbc.blogspot.com/2015/10/young.html','_blank');
   jQuery(".best_in_place").best_in_place();
 });
 
