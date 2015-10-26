@@ -16,7 +16,7 @@ var PlayerIDCardPrinter = function()
 	var department_x = 0;
 	var department_y = 0;
 
-	var content_x = 457;
+	var content_x = 557;
 	var school_x = content_x;
 	var school_y = 100;
 
@@ -79,35 +79,87 @@ var PlayerIDCardPrinter = function()
 		canvas.width = 2480;
 		canvas.height = 3508;
 		ctx = canvas.getContext('2d');
-		console.log(this.photoData);
+		
 		var photoData = this.photoData;
 		
 			
 			//one page 0~7
-			var pageIndex = 0;
-			var photoCnt = 0;
-			for (var i = 0; i < teams.length ; i++)
-			{
-				var team = teams[i];
-				console.log(team);
-				for (var j = 0; j < team.members.length;j++)
-				{
-					var member = team.members[j];
+		var pageIndex = 0;
+		var photoCnt = 0;
 
-					patchMemberToCanvas(team,member,photoData[photoCnt],pageIndex);
-					pageIndex++;
-					photoCnt++;
-					if(pageIndex == 10)
-					{
-						pageIndex = 0;
-						//print out the result for download
-						exportImage();
-						//clean the context
-					}
+		/*
+		for (var i = 0; i < teams.length ; i++)
+		{
+			var team = teams[i];
+			console.log(team);
+			for (var j = 0; j < team.members.length;j++)
+			{
+				var member = team.members[j];
+
+				patchMemberToCanvas(team,member,photoData[photoCnt],pageIndex);
+				pageIndex++;
+				photoCnt++;
+				if(pageIndex == 10)
+				{
+					pageIndex = 0;
+					//print out the result for download
+					exportImage();
+					//clean the context
 				}
 			}
-			
-			exportImage();
+		}
+		*/
+		
+		//exportImage();
+		console.log(teams.length);
+		getOnePage();
+		
+	}
+
+	var team_i = 0;
+	var member_i = 0;
+	var end = false;
+	var photoCnt = 0;
+	var pageCnt = 0;
+	function getOnePage()
+	{
+		console.log('page:'+pageCnt);
+		pageCnt++;
+
+		var photoData = printer.photoData;
+		for(var i=0;i<10;i++)
+		{
+			var team = teams[team_i];
+			var member = team.members[member_i];	
+			console.log(member_i);
+			console.log(member);
+			patchMemberToCanvas(team,member,photoData[photoCnt],i);
+
+			member_i++;
+			photoCnt++;
+			while(member_i==teams[team_i].members.length)
+			{
+				member_i = 0;
+				team_i++;
+				console.log(team_i);
+				if(team_i==teams.length)
+				{
+					console.log('break');
+					end = true;
+					break;
+				}
+			}
+			if(end == true)
+				break;
+		}
+
+		exportImage();
+
+		if(end == false)
+		{
+			console.log('end:'+end);
+			setTimeout(getOnePage, 3);
+		}
 		
 	}
 	function patchMemberToCanvas(team,member,photo,index)
@@ -133,7 +185,14 @@ var PlayerIDCardPrinter = function()
 
 		var photoHeight = 400;
 		var photoWidth =  photo.width/photo.height*photoHeight;
-		if(photoWidth>357)
+
+		if(photoWidth>content_x)
+		{
+			photoHeight =  photo.height/photo.width*content_x;
+			photoWidth = content_x;
+		}
+
+		if(photoWidth>457)
 			ctx.drawImage(photo,offset_x,222+offset_y,photoWidth,photoHeight);
 		else
 			ctx.drawImage(photo,100+offset_x,222+offset_y,photoWidth,photoHeight);
@@ -190,6 +249,7 @@ var PlayerIDCardPrinter = function()
 		var new_url = url.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
 		window.open(new_url,'_blank');
 		ctx.clearRect(0,0,a4_width,a4_height);
+
 		//console.log(this);
 	}
 	
