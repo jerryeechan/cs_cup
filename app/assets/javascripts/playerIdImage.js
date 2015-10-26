@@ -187,8 +187,8 @@ var PlayerIDCardPrinter = function()
 		console.log('Exporting image and download');
 		var url = canvas.toDataURL('image/png');
 		$('#result').get(0).src = url;
-		//var new_url = $('#result').get(0).src.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-		//window.open(new_url,'_blank');
+		var new_url = $('#result').get(0).src.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+		window.open(new_url,'_blank');
 		ctx.clearRect(0,0,a4_width,a4_height);
 		//console.log(this);
 	}
