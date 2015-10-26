@@ -16,7 +16,7 @@
 		<% end %>	
 		<% user.members.each do |member|%>
 
-			<%= image_tag(member.image, :class =>'photo') %>
+			<%= image_tag(member.image, :class =>'photo', :height=>'400')  %>
 			<%= javascript_tag do %>
 			var	memberData = new Object();
 			memberData.name = '<%= raw member.name %>';
