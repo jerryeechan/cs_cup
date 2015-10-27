@@ -171,8 +171,14 @@ var PlayerIDCardPrinter = function()
 		ctx.rect(offset_x,offset_y,offsetX[1],offsetY[1]);
 		
 		ctx.stroke();
-		ctx.drawImage(logoImg,offset_x+100,offset_y+50);
 
+		try {
+			ctx.drawImage(logoImg,offset_x+100,offset_y+50);
+		}
+		catch(e){
+			console.log('logo draw error');
+			console.log(e);
+		}
 
 		ctx.font = "100px Microsoft JhengHei";
 		ctx.fillText(member.name,content_x+offset_x,302+offset_y);
@@ -192,10 +198,16 @@ var PlayerIDCardPrinter = function()
 			photoWidth = content_x;
 		}
 
-		if(photoWidth>content_x-100)
-			ctx.drawImage(photo,offset_x,222+offset_y,photoWidth,photoHeight);
-		else
-			ctx.drawImage(photo,100+offset_x,222+offset_y,photoWidth,photoHeight);
+		try {
+			if(photoWidth>content_x-100)
+				ctx.drawImage(photo,offset_x,222+offset_y,photoWidth,photoHeight);
+			else
+				ctx.drawImage(photo,100+offset_x,222+offset_y,photoWidth,photoHeight);
+		}
+		catch(e){
+			console.log('photo draw error');
+			console.log(e);
+		}
 		/*
 		img.onload = function()
 		{
