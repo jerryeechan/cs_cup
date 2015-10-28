@@ -80,6 +80,21 @@ class User < ActiveRecord::Base
     
     if exists?(uid: auth.uid)
 #!!!!! new registration closed
+
+
+    else
+      User.new.tap do |user|
+        user.uid = auth.uid
+        user.school = "請點擊填入學校"
+      user.department = "請點擊填入系所"
+      user.sport = "請點擊選擇球類項目"
+      user.transfercode = "請點擊填入轉帳代碼"
+      user.captain = "請點擊填入隊長姓名"
+      user.save!
+      end
+    end
+
+
       where(uid: auth.uid).first.tap do |user|
 
         #user.email = auth.info.email
@@ -104,21 +119,7 @@ class User < ActiveRecord::Base
 
         
         user.save!
-      end
-    else
-      User.new.tap do |user|
-        user.uid = auth.uid
-        user.school = "請點擊填入學校"
-      user.department = "請點擊填入系所"
-      user.sport = "請點擊選擇球類項目"
-      user.transfercode = "請點擊填入轉帳代碼"
-      user.captain = "請點擊填入隊長姓名"
-      user.save!
-      end
     end
-
-
-      
   end
 
   has_many :members
