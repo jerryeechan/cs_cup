@@ -1,5 +1,19 @@
-<% @members.each do |member| %>
-	<div class="member_wrapper">
-		<%= best_in_place member, :name %>
-	</div>
-<% end %>
+<div id="main-core">
+	<% if is_authorized_user %>
+		<%= form_tag 'members', :controller=>'members', :method => :get do %>
+		  <p>
+		    <%= text_field_tag :filter_name %>
+		    <%= submit_tag "Search", :name => nil %>
+		  </p>
+		<% end %>
+		符合人數：<%= @members.count%>
+		<% @members.each do |member| %>
+			<div class="member_wrapper">
+				<p><%= member.name %></p>
+				<p><%= member.person_id %></p>
+				<%= image_tag(member.idcardfront,:height => '200')%>
+			</div>
+		<% end %>
+		
+	<% end %>
+</div>

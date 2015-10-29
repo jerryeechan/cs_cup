@@ -10,8 +10,9 @@ class MembersController < ApplicationController
 		redirect_to @user
 	end
 	def index
-		@user = User.find(params[:user_id])
-		@members = @user.members
+		#@user = User.find(params[:user_id])
+		#@members = @user.members
+		@members = Member.filter(params.slice(:filter_name))
 	end
 	def update
 		
