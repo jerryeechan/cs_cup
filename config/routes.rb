@@ -17,6 +17,7 @@ get 'users/close', as:'user_close', to:'users#close'
 
   resources :members
 
+  get 'admin/sendmail', to: 'admin#sendmail'
   get 'admin/print', to: 'admin#print'
   get 'admin/insurance', to: 'admin#insurance'
   get 'admin/talented', to: 'admin#talented'

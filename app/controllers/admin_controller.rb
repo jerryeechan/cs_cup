@@ -15,4 +15,14 @@ class AdminController < ApplicationController
 	def talented
 		@users = User.where(:confirm_state => 'mailed',:has_insurance => true)
 	end
+	def sendmail
+		puts "send1"
+  		@users = User.where(:confirm_state => 'mailed')
+  		@users.each do |user|
+  			puts "send0"
+  			NotifyAll.confirm(user.email).deliver_later!
+  			puts "send"
+  		end
+  		puts "send2"
+  	end
 end
