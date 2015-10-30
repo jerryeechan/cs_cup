@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
  # protect_from_forgery with: :exception
-	@@uidList = ["1073719775978420","1177007412316322","731459686959084","932544443484230","609290192542147","828537293911078","1241720182512181","516071328561708","421642244694207","1170007276346730"]
-          # => me dev,             me production,     會長 production,    jack produciton, chuck lee          阿水                陳映竹           Chang Chien-Yao     Jason Chou        Howard Hsu
+	@@uidList = ["1073719775978420","1177007412316322","731459686959084","932544443484230","609290192542147","828537293911078","1241720182512181","516071328561708","421642244694207","1170007276346730","887616047973869"]
+          # => me dev,             me production,     會長 production,    jack produciton, chuck lee          阿水                陳映竹           Chang Chien-Yao     Jason Chou        Howard Hsu         ,林
   @@sporthash = {"1" => "男籃", "2" => "女籃", "3" => "男排","4" => "女排", "5" => "壘球", "6" => "羽球", "7" => "桌球"}
   private
   def current_user
